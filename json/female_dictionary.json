@@ -1,0 +1,78 @@
+[
+	{	
+		"gender_name": "Girls",
+		"pl_name": "P & L platers",
+		"first_hour_qty": "2",
+		"every_hour_qty": "1",
+		"p_qty": "0",
+		"bar_intro": "Good evening, madam. Can I interest you in a drink?",
+		"club_1": "Stone cold sober but your game is on point.",
+		"club_2": "Busting out the moves",
+		"club_3": "...but not judging distances so well.",
+		"club_4": "YEAHHH!!! You've got your buzz on.",
+		"club_5": "...and you're more likely to take a risk...",
+		"club_6": "...like drink driving, totes a fail",
+		"club_7": "Is that a rogue hottie?",
+		"club_8": "Can you even tell?",
+		"club_9": "You're now 5 times more likely to crash...",
+		"club_10": "...if you could find your car.",
+		"club_11": "Properly sloshed...",
+		"club_12": "Oh look... you've chundered everywhere. Nice.",
+		"club_13": "You're now 10 times more likely to crash...",
+		"club_14": "...if you could find your car."
+	},
+	{
+		"drink_id": "bubbly",
+		"drink_name": "bubbly",
+		"container_name": "glass",
+		"tag_line": "Maybe madam would like something a little fancier?",
+		"first_line": "drink a flute of champagne in the first 90 minutes.",
+		"every_line": "half a glass every hour after that.",
+		"time": "60"
+	},
+	{
+		"drink_id": "middy",
+		"drink_name": "beer",
+		"container_name": "middy",
+		"tag_line": "Middy for a biddy?",
+		"first_line": "drink 1 full strength middy in 75 minutes.",
+		"every_line": "1 full strength middy every 75 minutes after that.",
+		"time": "75"
+	},
+	{
+		"drink_id": "pint",
+		"drink_name": "beer",
+		"container_name": "pint",
+		"tag_line": "It’s a good day for a pint.",
+		"first_line": "drink half a full strength pint in the first 75 minutes.",
+		"every_line": "1 full strength middy every 75 minutes after that.",
+		"time": "75"
+	},
+	{
+		"drink_id": "redwine",
+		"drink_name": "red wine",
+		"container_name": "glass",
+		"tag_line": "A glass of red perhaps?",
+		"first_line": "drink a standard glass of red wine in the first 90 minutes.",
+		"every_line": "a standard glass every 90 minutes after that.",
+		"time": "60"
+	},
+	{
+		"drink_id": "spirits",
+		"drink_name": "spirits",
+		"container_name": "shot",
+		"tag_line": "Top shelf for you madam?",
+		"first_line": "drink 1 nips or shots of spirits in the first hour.",
+		"every_line": "1 every hour after that.",
+		"time": "60"
+	},
+	{
+		"drink_id": "whitewine",
+		"drink_name": "white wine",
+		"container_name": "glass",
+		"tag_line": "I’ve got a lovely crisp white.",
+		"first_line": "drink a standard glass of white wine in the first 90 minutes.",
+		"every_line": "a standard glass every 90 minutes after that.",
+		"time": "60"
+	}
+]

@@ -1,0 +1,108 @@
+{"frames": [
+
+{
+	"filename": "0_container",
+	"frame": {"x":222,"y":2,"w":134,"h":376},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":134,"h":376},
+	"sourceSize": {"w":134,"h":376}
+},
+{
+	"filename": "0_label",
+	"frame": {"x":868,"y":289,"w":278,"h":199},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":278,"h":199},
+	"sourceSize": {"w":278,"h":199}
+},
+{
+	"filename": "1_container",
+	"frame": {"x":655,"y":2,"w":211,"h":323},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":211,"h":323},
+	"sourceSize": {"w":211,"h":323}
+},
+{
+	"filename": "1_label",
+	"frame": {"x":1711,"y":2,"w":330,"h":253},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":330,"h":253},
+	"sourceSize": {"w":330,"h":253}
+},
+{
+	"filename": "2_container",
+	"frame": {"x":2,"y":2,"w":218,"h":386},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":218,"h":386},
+	"sourceSize": {"w":218,"h":386}
+},
+{
+	"filename": "2_label",
+	"frame": {"x":868,"y":2,"w":330,"h":285},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":330,"h":285},
+	"sourceSize": {"w":330,"h":285}
+},
+{
+	"filename": "3_container",
+	"frame": {"x":508,"y":2,"w":145,"h":356},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":0,"w":145,"h":356},
+	"sourceSize": {"w":148,"h":356}
+},
+{
+	"filename": "3_label",
+	"frame": {"x":1200,"y":2,"w":254,"h":270},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":254,"h":270},
+	"sourceSize": {"w":254,"h":270}
+},
+{
+	"filename": "4_container",
+	"frame": {"x":1148,"y":289,"w":187,"h":192},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":187,"h":192},
+	"sourceSize": {"w":187,"h":192}
+},
+{
+	"filename": "4_label",
+	"frame": {"x":1711,"y":257,"w":289,"h":232},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":289,"h":232},
+	"sourceSize": {"w":289,"h":232}
+},
+{
+	"filename": "5_container",
+	"frame": {"x":358,"y":2,"w":148,"h":364},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":148,"h":364},
+	"sourceSize": {"w":148,"h":365}
+},
+{
+	"filename": "5_label",
+	"frame": {"x":1456,"y":2,"w":253,"h":269},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":253,"h":269},
+	"sourceSize": {"w":253,"h":269}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "drinks.png",
+	"format": "RGBA8888",
+	"size": {"w":2043,"h":491},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:27b48f978ee0765dfcc32ef7768fa9ee:db4e1e0b98b363b44223d621e2113de9:e54081237466c42ddf531387d9cbc0c5$"
+}
+}

@@ -1,0 +1,148 @@
+{"frames": {
+
+"ball.png":
+{
+	"frame": {"x":612,"y":1399,"w":74,"h":73},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":74,"h":73},
+	"sourceSize": {"w":74,"h":73}
+},
+"blood.png":
+{
+	"frame": {"x":1493,"y":1291,"w":269,"h":127},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":269,"h":127},
+	"sourceSize": {"w":269,"h":127}
+},
+"cloud.png":
+{
+	"frame": {"x":371,"y":769,"w":598,"h":628},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":598,"h":628},
+	"sourceSize": {"w":598,"h":628}
+},
+"cup.png":
+{
+	"frame": {"x":1856,"y":2,"w":130,"h":192},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":130,"h":192},
+	"sourceSize": {"w":130,"h":192}
+},
+"desk.png":
+{
+	"frame": {"x":971,"y":769,"w":858,"h":520},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":858,"h":520},
+	"sourceSize": {"w":858,"h":520}
+},
+"exit.png":
+{
+	"frame": {"x":1764,"y":1291,"w":229,"h":113},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":229,"h":113},
+	"sourceSize": {"w":229,"h":113}
+},
+"leftHand.png":
+{
+	"frame": {"x":1856,"y":312,"w":85,"h":111},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":85,"h":111},
+	"sourceSize": {"w":85,"h":111}
+},
+"letsgo.png":
+{
+	"frame": {"x":1212,"y":1291,"w":279,"h":129},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":279,"h":129},
+	"sourceSize": {"w":279,"h":129}
+},
+"lightLeft.png":
+{
+	"frame": {"x":1831,"y":769,"w":165,"h":237},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":165,"h":237},
+	"sourceSize": {"w":165,"h":237}
+},
+"lightLeftShine.png":
+{
+	"frame": {"x":2,"y":2,"w":925,"h":765},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":925,"h":765},
+	"sourceSize": {"w":925,"h":770}
+},
+"lightRight.png":
+{
+	"frame": {"x":1831,"y":1008,"w":165,"h":237},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":165,"h":237},
+	"sourceSize": {"w":165,"h":237}
+},
+"lightRightShine.png":
+{
+	"frame": {"x":929,"y":2,"w":925,"h":765},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":925,"h":765},
+	"sourceSize": {"w":925,"h":770}
+},
+"playAgain.png":
+{
+	"frame": {"x":971,"y":1291,"w":239,"h":160},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":239,"h":160},
+	"sourceSize": {"w":239,"h":160}
+},
+"rightHand.png":
+{
+	"frame": {"x":1856,"y":196,"w":91,"h":114},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":91,"h":114},
+	"sourceSize": {"w":91,"h":114}
+},
+"shareButton.png":
+{
+	"frame": {"x":371,"y":1399,"w":239,"h":109},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":239,"h":109},
+	"sourceSize": {"w":239,"h":109}
+},
+"wizard.png":
+{
+	"frame": {"x":2,"y":769,"w":367,"h":719},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":367,"h":719},
+	"sourceSize": {"w":367,"h":719}
+},
+"wizard_eye.png":
+{
+	"frame": {"x":1943,"y":312,"w":49,"h":49},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":49,"h":49},
+	"sourceSize": {"w":49,"h":49}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "cup_game.png",
+	"format": "RGBA8888",
+	"size": {"w":1998,"h":1510},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:ac664f06348ff387aa74d47c7a47eaa3:d4cafc330789436b9a6883df29906ce4:05ebc78dc4756a4d43c474d05462b2c0$"
+}
+}

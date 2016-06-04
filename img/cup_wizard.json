@@ -1,0 +1,140 @@
+{"frames": [
+
+{
+	"filename": "Cup",
+	"frame": {"x":1066,"y":2,"w":107,"h":157},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":107,"h":157},
+	"sourceSize": {"w":107,"h":157}
+},
+{
+	"filename": "ball",
+	"frame": {"x":1066,"y":350,"w":61,"h":61},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":61,"h":61},
+	"sourceSize": {"w":61,"h":61}
+},
+{
+	"filename": "blood_alcohol",
+	"frame": {"x":749,"y":702,"w":215,"h":104},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":215,"h":104},
+	"sourceSize": {"w":215,"h":104}
+},
+{
+	"filename": "cloud",
+	"frame": {"x":2,"y":1256,"w":490,"h":513},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":490,"h":513},
+	"sourceSize": {"w":490,"h":513}
+},
+{
+	"filename": "cupwizard_body",
+	"frame": {"x":763,"y":2,"w":301,"h":590},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":301,"h":590},
+	"sourceSize": {"w":301,"h":590}
+},
+{
+	"filename": "exit_btn",
+	"frame": {"x":494,"y":1679,"w":139,"h":89},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":139,"h":89},
+	"sourceSize": {"w":139,"h":89}
+},
+{
+	"filename": "greenray",
+	"frame": {"x":2,"y":632,"w":745,"h":622},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":0,"w":745,"h":622},
+	"sourceSize": {"w":749,"h":622}
+},
+{
+	"filename": "left_hand",
+	"frame": {"x":1066,"y":257,"w":70,"h":91},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":70,"h":91},
+	"sourceSize": {"w":70,"h":91}
+},
+{
+	"filename": "left_light",
+	"frame": {"x":749,"y":808,"w":135,"h":195},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":135,"h":195},
+	"sourceSize": {"w":135,"h":195}
+},
+{
+	"filename": "lets_go_btn",
+	"frame": {"x":763,"y":594,"w":229,"h":106},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":229,"h":106},
+	"sourceSize": {"w":229,"h":106}
+},
+{
+	"filename": "play_again_btn",
+	"frame": {"x":994,"y":685,"w":193,"h":130},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":193,"h":130},
+	"sourceSize": {"w":193,"h":130}
+},
+{
+	"filename": "redray",
+	"frame": {"x":2,"y":2,"w":759,"h":628},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":759,"h":628},
+	"sourceSize": {"w":759,"h":628}
+},
+{
+	"filename": "right_hand",
+	"frame": {"x":1066,"y":161,"w":75,"h":94},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":75,"h":94},
+	"sourceSize": {"w":75,"h":94}
+},
+{
+	"filename": "right_light",
+	"frame": {"x":749,"y":1005,"w":135,"h":195},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":135,"h":195},
+	"sourceSize": {"w":135,"h":195}
+},
+{
+	"filename": "share_btn",
+	"frame": {"x":994,"y":594,"w":196,"h":89},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":196,"h":89},
+	"sourceSize": {"w":196,"h":89}
+},
+{
+	"filename": "table",
+	"frame": {"x":494,"y":1256,"w":704,"h":421},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":704,"h":421},
+	"sourceSize": {"w":704,"h":421}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "cup_wizard.png",
+	"format": "RGBA8888",
+	"size": {"w":1200,"h":1771},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:9b8ba309199382d0f8ad6281bc21effc:bf76892acd064f3ac9b45e7584571aa9:97cb852bd48d4de2c54804d8c0b98683$"
+}
+}

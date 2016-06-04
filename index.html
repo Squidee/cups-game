@@ -1,48 +1,119 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
-<head>
-	<title>Cups Game</title>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="chrome=1, IE=9">
-	<meta name="format-detection" content="telephone=no">
-	<meta name="HandheldFriendly" content="true" />
-	<meta name="robots" content="noindex,nofollow" />
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-	<meta name="apple-mobile-web-app-title" content="Cups Game">
-	
-    <meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0 minimal-ui" />
-	
-	<link rel="stylesheet" href="css/stylesheet.css" type="text/css" charset="utf-8" />
-	
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    
-    <script src="js/phaser.min.js"></script>
-	
-    <script src="src/CupsGame.min.js?cache=4"></script>
-    
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Drink Stupid, Drive Stupid.</title>
+        <link href="./css/style.css" rel="stylesheet">
 
-	<div id="game"></div>
-	<div id="orientation"></div>
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 
-<script type="text/javascript">
+        <script src="./src/phaser.min.js"></script>
+        <script src="./src/phaser-state-transition-plugin.min.js"></script>
 
-(function () {
+        <script src="src/settings.js"></script>
+        <script src="src/Boot.js"></script>
+        <script src="src/Preloader.js"></script>
+        <script src="src/MainMenu.js"></script>
+        <script src="src/GenderSelect.js"></script>
+        <script src="src/CharacterSelect.js"></script>
+        <script src="src/BarScene.js"></script>
+        <script src="src/ClubScene.js"></script>
+        <script src="src/FinalLock.js"></script>
+        <script src="src/modal.js"></script>
 
-	//Phaser.AUTO 
-    var game = new Phaser.Game(GAME_WIDTH, GAME_HEIGHT, Phaser.AUTO, 'game');
+        <script src="src/CupsGame.js?"></script>
 
-	//	Add the States your game has.
-	//	You don't have to do this in the html, it could be done in your Boot state too, but for simplicity I'll keep it here.
-	game.state.add('Boot', CupGame.Boot);
-	
-	//	Now start the Boot state.
-	game.state.start('Boot');
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0 minimal-ui" />
 
-})();
-</script>
+        <meta property="og:title" content="Drink Stupid, Drive Stupid." />
+        <meta properth="og:url" content="http://drinkstupiddrivestupid.com" />
+        <meta property="og:description" content="Play the game now. Choose your character, grab a drink, and play the pub quiz." />
+        <meta property="og:type" content="website" />
 
-</body>
+        <!-- Still needs to have fb image added -->
+
+    </head>
+    <body>
+
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '935245386533012',
+          xfbml      : true,
+          version    : 'v2.4'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <div id="game"></div>
+    <div id="orientation"></div>
+
+    <script type="text/javascript">
+
+    window.onload = function() {
+
+        var game = new Phaser.Game(GAME_WIDTH, GAME_HEIGHT, Phaser.CANVAS, 'game');
+
+        WebFontConfig = {
+
+            custom: {
+              families: ['ChronicaPro-Heavy'],
+              urls: ['css/fonts.css']
+            }
+        }; 
+
+        game.state.add('Boot', DrinkDrive.Boot);
+        game.state.add('Preloader', DrinkDrive.Preloader);
+        game.state.add('MainMenu', DrinkDrive.MainMenu);
+        game.state.add('GenderSelect', DrinkDrive.GenderSelect);
+        game.state.add('CharacterSelect', DrinkDrive.CharacterSelect);
+        game.state.add('BarScene', DrinkDrive.BarScene);
+        game.state.add('ClubScene', DrinkDrive.ClubScene);
+        game.state.add('FinalLock', DrinkDrive.FinalLock);
+
+        game.state.add('CupPreloader', DrinkDrive.CupPreloader);
+        game.state.add('CupGameMainMenu', DrinkDrive.CupGameMainMenu);
+        game.state.add('CupGameSecondMenu', DrinkDrive.CupGameSecondMenu);
+
+        game.state.add('Level1', DrinkDrive.Level1);
+        game.state.add('Level2', DrinkDrive.Level2);
+        game.state.add('Level3', DrinkDrive.Level3);
+        game.state.add('Level4', DrinkDrive.Level4);
+        game.state.add('Level5', DrinkDrive.Level5);
+        game.state.add('Level6', DrinkDrive.Level6);
+
+        game.state.add('Share', DrinkDrive.Share);
+
+        game.state.start('Boot', DrinkDrive.Boot);
+
+    };
+
+    </script>
+
+    <div style="font-family: 'ChronicaPro-Heavy'; position: absolute; left: -1000px;">
+        Office of Road Safety
+    </div>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','http://www.google-analytics.com%2Fanalytics.js','ga');
+     
+      ga('create', 'UA-65740832-1', 'auto');
+      ga('send', 'pageview');
+     
+    </script>
+
+    </body>
 </html>

@@ -1,0 +1,77 @@
+[
+	{	
+		"gender_name": "P & L platers",
+		"first_hour_qty": "0",
+		"every_hour_qty": "0",
+		"p_qty": "0",
+		"bar_intro": "Good evening, sir. Can I interest you in a drink?",
+		"club_1": "Stone cold sober but your game is on point.",
+		"club_2": "Starting to feel AMAZING",
+		"club_3": "...but not judging distances so well.",
+		"club_4": "YEAHHH!!! You've got your buzz on.",
+		"club_5": "...and you're more likely to take a risk...",
+		"club_6": "...like drink driving you turkey.",
+		"club_7": "Is that a man or a woman?",
+		"club_8": "Do you care?",
+		"club_9": "You're now 5 times more likely to crash...",
+		"club_10": "...if you could find your car.",
+		"club_11": "Properly sloshed...",
+		"club_12": "Oh look... you've chundered everywhere. Nice.",
+		"club_13": "You're now 10 times more likely to crash...",
+		"club_14": "...if you could find your car."
+	},
+	{
+		"drink_id": "bubbly",
+		"drink_name": "bubbly",
+		"container_name": "glass",
+		"tag_line": "Maybe sir would like something a little fancier?",
+		"first_line": "have NOTHING to drink and still drive. P & L platers must have a blood alcohol of zero.",
+		"every_line": "A refreshing glass of water instead. You lucky thing!",
+		"time": "60"
+	},
+	{
+		"drink_id": "middy",
+		"drink_name": "beer",
+		"container_name": "middy",
+		"tag_line": "Middy for a mate?",
+		"first_line": "not drink anything and drive because you’re a P or L plater. A zero hero.",
+		"every_line": "Coffee. Cawfee! COFFEE! Wow, slow down with those.",
+		"time": "75"
+	},
+	{
+		"drink_id": "pint",
+		"drink_name": "beer",
+		"container_name": "pint",
+		"tag_line": "It’s a good day for a pint.",
+		"first_line": "have no alcohol because of your P or L plates.",
+		"every_line": "A cabbage flavoured soft drink instead. Nice.",
+		"time": "75"
+	},
+	{
+		"drink_id": "redwine",
+		"drink_name": "red wine",
+		"container_name": "glass",
+		"tag_line": "A glass of red perhaps?",
+		"first_line": "have a dry night. P and L platers can’t drink anything and drive!",
+		"every_line": "Milk instead. Like a baby but with a car.",
+		"time": "60"
+	},
+	{
+		"drink_id": "spirits",
+		"drink_name": "spirits",
+		"container_name": "shot",
+		"tag_line": "Top shelf for you sir?",
+		"first_line": "not drink because you’re a P or L plater. And designated driver remember!",
+		"every_line": "Sugary drinks instead. Ride the high…",
+		"time": "60"
+	},
+	{
+		"drink_id": "whitewine",
+		"drink_name": "white wine",
+		"container_name": "glass",
+		"tag_line": "I’ve got a lovely crisp white.",
+		"first_line": "not drink anything and still drive… P & L plates can have zero, zip, zilch to drink!",
+		"every_line": "Chips. Like a drink but crunchier.",
+		"time": "60"
+	}
+]

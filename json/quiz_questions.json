@@ -1,0 +1,80 @@
+[
+	{	
+		"question" : "It is safe to drink 2 pints in 1 hour and drive home.",
+		"answer" : "false",
+		"incorrect_response" : "Wrong, you are way over the limit!",
+		"correct_response" : "Well done, 2 pints can be up to 4.4 standard drinks!"
+	},
+	{	
+		"question" : "Red and white wine are the same strength.",
+		"answer" : "false",
+		"incorrect_response" : "Wrong. Red wine is generally stronger than white.",
+		"correct_response" : "Well done. Red wine is generally stronger."
+	},
+	{	
+		"question" : "There are 4 standard drinks in a bottle of wine",
+		"answer" : "false",
+		"incorrect_response" : "Oops wrong. There are 7.7 standard drinks in an average bottle.",
+		"correct_response" : "Well done! There are 7.7 standard drinks in an average bottle."
+	},
+	{	
+		"question" : "1 pint is 1 standard drink",
+		"answer" : "false",
+		"incorrect_response" : "False. One pint ranges from 1.5 to 2.2 standard drinks.",
+		"correct_response" : "Well done. One pint ranges from 1.5 to 2.2 standard drinks."
+	},
+	{	
+		"question" : "Australia’s Southern most pub is in Tasmania.",
+		"answer" : "true",
+		"incorrect_response" : "Wrong. It’s called the Southport Hotel.",
+		"correct_response" : "True. It’s called the Southport Hotel."
+	},
+	{	
+		"question" : "The ‘pub with no beer’ is real place.",
+		"answer" : "true",
+		"incorrect_response" : "Wrong, it does exist. It's called Lees Hotel and it's in Queensland.",
+		"correct_response" : "True. It's called Lees Hotel and it's in Queensland."
+	},
+	{	
+		"question" : "Beer is classified as a food group in South Australia.",
+		"answer" : "false",
+		"incorrect_response" : "Wrong. Let’s move on.",
+		"correct_response" : "That's correct. You're killing it."
+	},
+	{	
+		"question" : "Alcohol was initially banned in Canberra.",
+		"answer" : "true",
+		"incorrect_response" : "Wrong. ‘Stagger juice’ was prohibited at one point.",
+		"correct_response" : "Yes, this is true."
+	},
+	{	
+		"question" : "Beer dates back to the Neolithic period.",
+		"answer" : "true",
+		"incorrect_response" : "Wrong. This is true.",
+		"correct_response" : "True. Beer dates back to 10,200-8,800 BC."
+	},
+	{	
+		"question" : "Vikings drank alcohol from the skulls of their defeated enemies.",
+		"answer" : "true",
+		"incorrect_response" : "True and stranger than fiction.",
+		"correct_response" : "Correct. Don’t mess with a Viking."
+	},
+	{	
+		"question" : "In Puerto Rico, rubbing lemon on your drinking arm is considered a hangover cure.",
+		"answer" : "true",
+		"incorrect_response" : "Nope, this is actually true!",
+		"correct_response" : "This is true. Worth a shot?"
+	},
+	{	
+		"question" : "Bourbon is the official spirits of the United States.",
+		"answer" : "true",
+		"incorrect_response" : "Wrong, it certainly is.",
+		"correct_response" : "This is true."
+	},
+	{	
+		"question" : "Guinness is brewed using potatoes.",
+		"answer" : "false",
+		"incorrect_response" : "False. It’s made from barley, hops and yeast.",
+		"correct_response" : "Correct!"
+	}
+]

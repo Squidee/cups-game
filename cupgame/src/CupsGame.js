@@ -116,8 +116,117 @@ function resetGameSizeHeight(object)
    }; 
 })( jQuery );
 
-DrinkDrive.Cups = function (game) {
 
+var GAME_WIDTH = 640; 
+var GAME_HEIGHT = 940;
+
+var MIN_GAME_WIDTH = 320; 
+var MIN_GAME_HEIGHT = 470;
+
+var DESKTOP_GAME_WIDTH = 420; 
+var DESKTOP_GAME_HEIGHT = 570;
+
+var MOBILE_GAME_WIDTH = 640; 
+var MOBILE_GAME_HEIGHT = 940;
+
+
+CupGame = {
+
+    /* Here we've just got some global level vars that persist regardless of State swaps */
+    score: 0,
+
+    /* If the music in your game needs to play through-out a few State swaps, then you could reference it here */
+    music: null,
+
+    /* Your game can check CupGame.orientated in internal loops to know if it should pause or not */
+    orientated: false
+};
+
+CupGame.Boot = function (game) {
+};
+
+CupGame.Boot.prototype = {
+
+    init: function () {
+        
+        this.game.state.add('Preloader', CupGame.Preloader);
+	    this.game.state.add('MainMenu', CupGame.MainMenu);
+        this.game.state.add('SecondMenu', CupGame.SecondMenu);
+
+        this.game.state.add('Level1', CupGame.Level1);
+        this.game.state.add('Level2', CupGame.Level2);
+        this.game.state.add('Level3', CupGame.Level3);
+        this.game.state.add('Level4', CupGame.Level4);
+        this.game.state.add('Level5', CupGame.Level5);
+        this.game.state.add('Level6', CupGame.Level6);
+
+        this.game.state.add('Share', CupGame.Share);
+        
+        this.input.maxPointers = 1;
+        this.stage.disableVisibilityChange = true;
+        
+        if (this.game.device.desktop)
+        {
+            this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+            this.scale.setMinMax(MIN_GAME_WIDTH, MIN_GAME_HEIGHT, DESKTOP_GAME_WIDTH, DESKTOP_GAME_HEIGHT);
+            
+            $("#game").addClass("desktop");
+        }
+        else
+        {
+            this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+            this.scale.setMinMax(MIN_GAME_WIDTH, MIN_GAME_HEIGHT, MOBILE_GAME_WIDTH, MOBILE_GAME_HEIGHT);
+            
+            this.scale.forceOrientation(true, false);
+            this.scale.setResizeCallback(this.gameResized, this);
+            this.scale.enterIncorrectOrientation.add(this.enterIncorrectOrientation, this);
+            this.scale.leaveIncorrectOrientation.add(this.leaveIncorrectOrientation, this);
+            $("#game").addClass("mobile");
+        }
+
+    },
+
+    preload: function () {
+
+        //  Here we load the assets required for our preloader (in this case a background and a loading bar)
+        this.load.image('preloaderBackground', 'images/preloader_background.jpg');
+        this.load.image('preloaderBar', 'images/preloader_bar.png');
+        
+        this.load.image('default_bg', 'assets/backgrounds/default.png');
+        
+    },
+
+    create: function () {
+
+        this.state.start('Preloader');
+    },
+
+    gameResized: function (width, height) {
+        
+        //  This could be handy if you need to do any extra processing if the game resizes.
+        //  A resize could happen if for example swapping orientation on a device or resizing the browser window.
+        //  Note that this callback is only really useful if you use a ScaleMode of RESIZE and place it inside your main game state.
+
+    },
+
+    enterIncorrectOrientation: function () {
+
+        CupGame.orientated = false;
+
+        document.getElementById('orientation').style.display = 'none';
+
+    },
+
+    leaveIncorrectOrientation: function () {
+        
+        CupGame.orientated = true;
+
+        document.getElementById('orientation').style.display = 'block';
+
+    }
+};
+
+CupGame.Cups = function (game) {
     this.game = game;		//	a reference to the currently running game
     
     this.cup_1 = null;
@@ -163,7 +272,7 @@ DrinkDrive.Cups = function (game) {
     this.wizard = null;
 };
 
-DrinkDrive.Cups.prototype = {
+CupGame.Cups.prototype = {
     
 	create: function (withHands) {
         
@@ -237,7 +346,7 @@ DrinkDrive.Cups.prototype = {
 
     createBall: function()
     {
-        ball = new DrinkDrive.Ball(this.game);
+        ball = new CupGame.Ball(this.game);
         ball.create(this.hasHands);
         
         if(this.hasHands)
@@ -1043,7 +1152,7 @@ DrinkDrive.Cups.prototype = {
 };
 
 
-DrinkDrive.Ball = function (game) {
+CupGame.Ball = function (game) {
     this.game = game;		//	a reference to the currently running game
 
     this.sprite = null;
@@ -1053,7 +1162,7 @@ DrinkDrive.Ball = function (game) {
     
 };
 
-DrinkDrive.Ball.prototype = {
+CupGame.Ball.prototype = {
 
 	create: function (withHands) {
         
@@ -1113,14 +1222,14 @@ DrinkDrive.Ball.prototype = {
 };
 
 
-DrinkDrive.Desk = function (game) {
+CupGame.Desk = function (game) {
     this.game = game;		//	a reference to the currently running game
 
     this.sprite = null;
     
 };
 
-DrinkDrive.Desk.prototype = {
+CupGame.Desk.prototype = {
 
 	create: function () {
         
@@ -1181,7 +1290,7 @@ DrinkDrive.Desk.prototype = {
     
 };
 
-DrinkDrive.Lights = function (game) {
+CupGame.Lights = function (game) {
     this.game = game;		//	a reference to the currently running game
     
     
@@ -1195,7 +1304,7 @@ DrinkDrive.Lights = function (game) {
 };
 
 
-DrinkDrive.Lights.prototype = {
+CupGame.Lights.prototype = {
     
     
 	create: function () {
@@ -1346,14 +1455,14 @@ DrinkDrive.Lights.prototype = {
 };
 
 
-DrinkDrive.ExitButton = function (game) {
+CupGame.ExitButton = function (game) {
     this.game = game;		//	a reference to the currently running game
 
     this.aButton = null;
     
 };
 
-DrinkDrive.ExitButton.prototype = {
+CupGame.ExitButton.prototype = {
     
 	create: function () {
         
@@ -1379,7 +1488,7 @@ DrinkDrive.ExitButton.prototype = {
         //this.alpha
         //this.alpha = 0.2;
         //this.destroy();
-        this.game.state.start('GenderSelect');
+        alert("Exit Button Action - Not sure where this goes");
     },
     
     destroy:function()
@@ -1388,7 +1497,7 @@ DrinkDrive.ExitButton.prototype = {
     }
 };
 
-DrinkDrive.Wizard = function (game) {
+CupGame.Wizard = function (game) {
     this.game = game;		//	a reference to the currently running game
     
     this.body = null;
@@ -1404,7 +1513,7 @@ DrinkDrive.Wizard = function (game) {
     this.eyeDown = false;
 };
 
-DrinkDrive.Wizard.prototype = {
+CupGame.Wizard.prototype = {
     
     
 	create: function () {
@@ -1420,7 +1529,7 @@ DrinkDrive.Wizard.prototype = {
         this.rightEye = this.game.add.sprite((this.game.width/2)+65, (this.game.height/2)+70, 'cup_game', 'wizard_eye.png');
         this.rightEye.anchor.set(0.5);
         
-        this.desk = new DrinkDrive.Desk(this.game);
+        this.desk = new CupGame.Desk(this.game);
         this.desk.create();
         
         this.blurX = this.game.add.filter('BlurX');
@@ -1565,7 +1674,7 @@ DrinkDrive.Wizard.prototype = {
     
 };
 
-DrinkDrive.ScoreBoard = function (game) {
+CupGame.ScoreBoard = function (game) {
     this.game = game;		//	a reference to the currently running game
     
     
@@ -1579,16 +1688,16 @@ DrinkDrive.ScoreBoard = function (game) {
 };
 
 
-DrinkDrive.ScoreBoard.prototype = {
+CupGame.ScoreBoard.prototype = {
     
     
 	create: function () {
         
         this.bloodySign = this.game.add.sprite(30, this.game.height-(127+20), 'cup_game', 'blood.png');
         
-        var styleTwenty = DrinkDrive.Style.defaultText("45px", this.game.width, "#FFFFFF");
+        var styleTwenty = CupGame.Style.defaultText("45px", this.game.width, "#FFFFFF");
         
-        var styleTwentyBlack = DrinkDrive.Style.defaultText("70px", this.game.width, "#FFFFFF");
+        var styleTwentyBlack = CupGame.Style.defaultText("70px", this.game.width, "#FFFFFF");
         
         this.levelLabel = this.game.add.text(85, this.game.height-(127+85), '', styleTwenty);
         
@@ -1627,17 +1736,17 @@ DrinkDrive.ScoreBoard.prototype = {
     
 };
 
-DrinkDrive.DistractionLabel = function (game) {
+CupGame.DistractionLabel = function (game) {
     this.game = game;		//	a reference to the currently running game
     
 };
 
 
-DrinkDrive.DistractionLabel.prototype = {
+CupGame.DistractionLabel.prototype = {
     
 	create: function () {
         
-        var styleTwenty = DrinkDrive.Style.defaultText("70px", this.game.width, "#FFFFFF");
+        var styleTwenty = CupGame.Style.defaultText("70px", this.game.width, "#FFFFFF");
         
         mainLabel = this.game.add.text((this.game.width/2), 120, '', styleTwenty);
         mainLabel.anchor.set(0.5);
@@ -1668,14 +1777,14 @@ DrinkDrive.DistractionLabel.prototype = {
 };
 
 
-DrinkDrive.Cloud = function (game) {
+CupGame.Cloud = function (game) {
     this.game = game;		//	a reference to the currently running game
 
     this.sprite = null;
     this.isFullScreen = false;
 };
 
-DrinkDrive.Cloud.prototype = {
+CupGame.Cloud.prototype = {
 
 	create: function (isSmoke) {
         //598 × 628 
@@ -1765,18 +1874,18 @@ DrinkDrive.Cloud.prototype = {
 
 };
 
-DrinkDrive.InfoLabel = function (game) {
+CupGame.InfoLabel = function (game) {
     this.game = game;		//	a reference to the currently running game
     
 };
 
 
-DrinkDrive.InfoLabel.prototype = {
+CupGame.InfoLabel.prototype = {
     
 	create: function () {
         
-        var styleTwenty = DrinkDrive.Style.defaultText("40px", this.game.width, "#FFFFFF");
-        var styleTwentyBlack = DrinkDrive.Style.defaultText("30px", (this.game.width * 0.75), "#FFFFFF");
+        var styleTwenty = CupGame.Style.defaultText("40px", this.game.width, "#FFFFFF");
+        var styleTwentyBlack = CupGame.Style.defaultText("30px", (this.game.width * 0.75), "#FFFFFF");
         
         levelLabel = this.game.add.text((this.game.width/2), 50, '', styleTwenty);
         levelLabel.anchor.set(0.5);
@@ -1828,13 +1937,13 @@ DrinkDrive.InfoLabel.prototype = {
     
 };
 
-DrinkDrive.InfoImage = function (game) {
+CupGame.InfoImage = function (game) {
     this.game = game;		//	a reference to the currently running game
     this.sprite = null;
 };
 
 
-DrinkDrive.InfoImage.prototype = {
+CupGame.InfoImage.prototype = {
     
 	create: function (level) {
         if(level<=6)
@@ -1889,26 +1998,26 @@ DrinkDrive.InfoImage.prototype = {
 };
 
 
-DrinkDrive.Style = function (game) {
+CupGame.Style = function (game) {
     //	You can use any of these from any function within this State.
     //	But do consider them as being 'reserved words', i.e. don't create a property for your own game called "world" or you'll over-write the world reference.
     this.defaultText;
 };
 
-DrinkDrive.Style.defaultText = function (fontSize, width)
+CupGame.Style.defaultText = function (fontSize, width)
 {
     return this.defaultText(fontSize, width, "#46a8ef");
 };
 
-DrinkDrive.Style.defaultText = function (fontSize, width, aColor)
+CupGame.Style.defaultText = function (fontSize, width, aColor)
 {
-    var style = { font: 'ChronicaPro-Heavy', fontSize: fontSize, fill: aColor, wordWrap: true, wordWrapWidth: width, align: "center" };
+    var style = { font: '', fontSize: fontSize, fill: aColor, wordWrap: true, wordWrapWidth: width, align: "center" };
     
     return style;
 };
 
 2
-DrinkDrive.CupPreloader = function (game) {
+CupGame.Preloader = function (game) {
 
 	this.background = null;
 	this.preloadBar = null;
@@ -1917,7 +2026,7 @@ DrinkDrive.CupPreloader = function (game) {
 
 };
 
-DrinkDrive.CupPreloader.prototype = {
+CupGame.Preloader.prototype = {
 
 	preload: function () {
 
@@ -1946,7 +2055,7 @@ DrinkDrive.CupPreloader.prototype = {
         //console.log(this.game.state.states.Game.defaultTextStyle());
         
         //Display th loading please wait text
-        var style = DrinkDrive.Style.defaultText("30px", this.game.width*0.7, "#FFFFFF");
+        var style = CupGame.Style.defaultText("30px", this.game.width*0.7, "#FFFFFF");
         
         var load_text = this.game.add.text((this.game.width*0.5), (this.game.height*0.5), 'Please wait loading game data...', style);
         load_text.anchor.set(0.5);
@@ -1962,7 +2071,7 @@ DrinkDrive.CupPreloader.prototype = {
 	update: function () {
 
 		//	You don't actually need to do this, but I find it gives a much smoother game experience.
-		//	Basically it will wait for our audio file to be decoded before proceeding to the CupGameMainMenu.
+		//	Basically it will wait for our audio file to be decoded before proceeding to the MainMenu.
 		//	You can jump right into the menu if you want and still play the music, but you'll have a few
 		//	seconds of delay while the mp3 decodes - so if you need your music to be in-sync with your menu
 		//	it's best to wait for it to decode here first, then carry on.
@@ -2005,12 +2114,12 @@ DrinkDrive.CupPreloader.prototype = {
         this.cleanUp();
   		
         //this.state.start('Level1');        
-        this.state.start('CupGameMainMenu');
+        this.state.start('MainMenu');
     }
 };
 
 
-DrinkDrive.CupGameMainMenu = function (game) {
+CupGame.MainMenu = function (game) {
 
 	this.playButton = null;
     this.message_text = null;
@@ -2020,15 +2129,13 @@ DrinkDrive.CupGameMainMenu = function (game) {
     this.tapped = false;
 };
 
-DrinkDrive.CupGameMainMenu.prototype = {
+CupGame.MainMenu.prototype = {
 
 	create: function () {
         
 		//	We've already preloaded our assets, so let's kick right into the Main Menu itself.
         //Display the background
         this.game.add.image(0, 0, 'default_bg');
-
-
         
         //Display buttons and defines a callback
         
@@ -2036,15 +2143,15 @@ DrinkDrive.CupGameMainMenu.prototype = {
         this.cloud.anchor.set(0.5);
         
         //Text
-        var style = DrinkDrive.Style.defaultText("60px", this.game.width*0.7, "#46a8ef");
+        var style = CupGame.Style.defaultText("60px", this.game.width*0.7, "#46a8ef");
         
         load_text = this.game.add.text((this.game.width*0.5), (this.game.height*0.25), 'This will be the loosest cup & ball game you\'ve ever played.', style);
         load_text.anchor.set(0.5);
         
-        desk = new DrinkDrive.Desk(this.game);
+        desk = new CupGame.Desk(this.game);
         desk.create();
         
-        cups = new DrinkDrive.Cups(this.game);
+        cups = new CupGame.Cups(this.game);
         cups.create();
         
         cups.createBall();
@@ -2054,13 +2161,9 @@ DrinkDrive.CupGameMainMenu.prototype = {
         playButton.anchor.set(0.5);
         playButton.inputEnabled = true;
         playButton.events.onInputDown.add(this.play_button_tapped, this);
-        /*
-        exitButton = new DrinkDrive.ExitButton(this.game);
+        
+        exitButton = new CupGame.ExitButton(this.game);
         exitButton.create();
-        */
-
-        var shareButton = this.add.button(GAME_WIDTH/2+115, 804, 'cup_game', this.exitButton, this);
-        shareButton.frameName = 'exit.png';
         
         (function(object) { 
             object.game.input.keyboard.onDownCallback = function(e) {
@@ -2074,12 +2177,6 @@ DrinkDrive.CupGameMainMenu.prototype = {
         
         this.tapped = false;
 	},
-
-    exitButton: function() {
-        this.cleanUp();
-        console.log('changed scene');
-        this.game.state.start('GenderSelect');
-    },
 
 	update: function () {
 
@@ -2109,14 +2206,14 @@ DrinkDrive.CupGameMainMenu.prototype = {
             this.tapped = true;
             
             this.cleanUp();
-            this.state.start('CupGameSecondMenu');
+            this.state.start('SecondMenu');
         }
     }
 
 };
 
 
-DrinkDrive.CupGameSecondMenu = function (game) {
+CupGame.SecondMenu = function (game) {
 
 	//	When a State is added to Phaser it automatically has the following properties set on it, even if they already exist:
 
@@ -2149,16 +2246,16 @@ DrinkDrive.CupGameSecondMenu = function (game) {
     this.infoImage = null;
 };
 
-DrinkDrive.CupGameSecondMenu.prototype = {
+CupGame.SecondMenu.prototype = {
 
 	create: function () {
         
         this.game.add.image(0, 0, 'default_bg');
         
-        this.desk = new DrinkDrive.Desk(this.game);
+        this.desk = new CupGame.Desk(this.game);
         this.desk.create();
         
-        this.cloud = new DrinkDrive.Cloud(this.game);
+        this.cloud = new CupGame.Cloud(this.game);
         this.cloud.create();
         
         this.playButton = this.game.add.sprite((this.game.width*0.5), (this.game.height-100), 'startBtn');
@@ -2166,17 +2263,17 @@ DrinkDrive.CupGameSecondMenu.prototype = {
         this.playButton.inputEnabled = true;
         this.playButton.events.onInputDown.add(this.play_button_tapped, this);
         
-        this.cups = new DrinkDrive.Cups(this.game);
+        this.cups = new CupGame.Cups(this.game);
         this.cups.create();
         
         this.cups.createBall();
         
-        var style = DrinkDrive.Style.defaultText("45px", (this.game.width*0.75), "#46a8ef");
+        var style = CupGame.Style.defaultText("45px", (this.game.width*0.75), "#46a8ef");
         
         this.message_text = this.game.add.text((this.game.width*0.5), (this.game.height*0.25), 'Watch what cup the ball goes under. Once the cups have stopped moving select the right cup.', style);
         this.message_text.anchor.set(0.5);
         
-        this.smoke = new DrinkDrive.Cloud(this.game);
+        this.smoke = new CupGame.Cloud(this.game);
         this.smoke.create(false);
         this.smoke.sprite.alpha = 0;
         
@@ -2231,14 +2328,14 @@ DrinkDrive.CupGameSecondMenu.prototype = {
 		//	Stop music, delete sprites, purge caches, free resources, all that good stuff.
         this.cleanUp();
 		//	Then let's go back to the main menu.
-		this.state.start('CupGameSecondMenu');
+		this.state.start('SecondMenu');
 
 	}
 
 };
 
 
-DrinkDrive.Level1 = function (game) {
+CupGame.Level1 = function (game) {
 
 	//	When a State is added to Phaser it automatically has the following properties set on it, even if they already exist:
 
@@ -2273,31 +2370,28 @@ DrinkDrive.Level1 = function (game) {
     this.hasResizedDistaction = false;
 };
 
-DrinkDrive.Level1.prototype = {
+CupGame.Level1.prototype = {
 
 	create: function () {
         this.game.stage.backgroundColor = '#FFFFFF';
         this.background = this.game.add.image(0, 0, 'default_bg');
-
-        var shareButton = this.add.button(GAME_WIDTH/2+115, 804, 'cup_game', this.exitButton, this);
-        shareButton.frameName = 'exit.png';
         
-        lights = new DrinkDrive.Lights(this.game);
+        lights = new CupGame.Lights(this.game);
         lights.create();
         
-        wizard = new DrinkDrive.Wizard(this.game);
+        wizard = new CupGame.Wizard(this.game);
         wizard.create();
         
-        cups = new DrinkDrive.Cups(this.game);
+        cups = new CupGame.Cups(this.game);
         cups.create(true);
         cups.updateSwapSpeed(700);
         cups.createBall();
         cups.setWizard(wizard);
         
-        exitButton = new DrinkDrive.ExitButton(this.game);
+        exitButton = new CupGame.ExitButton(this.game);
         exitButton.create();
         
-        scoreBoard = new DrinkDrive.ScoreBoard(this.game);
+        scoreBoard = new CupGame.ScoreBoard(this.game);
         scoreBoard.create();
         
         scoreBoard.bloodySign.inputEnabled = true;
@@ -2306,16 +2400,16 @@ DrinkDrive.Level1.prototype = {
         scoreBoard.updateLevel('Level 1');
         scoreBoard.updateBloodLevel("0", "0");
         
-        distractionLabel = new DrinkDrive.DistractionLabel(this.game);
+        distractionLabel = new CupGame.DistractionLabel(this.game);
         distractionLabel.create();
         distractionLabel.updateLabel("BALLS!");
         
-        this.smoke = new DrinkDrive.Cloud(this.game);
+        this.smoke = new CupGame.Cloud(this.game);
         this.smoke.create(true);
         this.smoke.sprite.alpha = 1.0;
         this.smoke.fullScreen();
         
-        infoImage = new DrinkDrive.InfoImage(this.game);
+        infoImage = new CupGame.InfoImage(this.game);
         infoImage.create(1);
         infoImage.sprite.alpha = 0;
         infoImage.fadeIn();
@@ -2394,7 +2488,7 @@ DrinkDrive.Level1.prototype = {
 		//	Stop music, delete sprites, purge caches, free resources, all that good stuff.
         this.cleanUp();
 		//	Then let's go back to the main menu.
-		this.state.start('CupGameMainMenu');
+		this.state.start('MainMenu');
            
 	},
     
@@ -2427,7 +2521,7 @@ DrinkDrive.Level1.prototype = {
 };
 
 
-DrinkDrive.Level2 = function (game) {
+CupGame.Level2 = function (game) {
 
 	//	When a State is added to Phaser it automatically has the following properties set on it, even if they already exist:
 
@@ -2464,29 +2558,29 @@ DrinkDrive.Level2 = function (game) {
     this.background = null;
 };
 
-DrinkDrive.Level2.prototype = {
+CupGame.Level2.prototype = {
 
 	create: function () {
         
         this.game.stage.backgroundColor = '#FFFFFF';
         this.background = this.game.add.image(0, 0, 'default_bg');
         
-        lights = new DrinkDrive.Lights(this.game);
+        lights = new CupGame.Lights(this.game);
         lights.create();
         
-        wizard = new DrinkDrive.Wizard(this.game);
+        wizard = new CupGame.Wizard(this.game);
         wizard.create();
         
-        cups = new DrinkDrive.Cups(this.game);
+        cups = new CupGame.Cups(this.game);
         cups.create(true);
         cups.updateSwapSpeed(350);
         cups.createBall();
         cups.setWizard(wizard);
         
-        exitButton = new DrinkDrive.ExitButton(this.game);
+        exitButton = new CupGame.ExitButton(this.game);
         exitButton.create();
         
-        scoreBoard = new DrinkDrive.ScoreBoard(this.game);
+        scoreBoard = new CupGame.ScoreBoard(this.game);
         scoreBoard.create();
         
         scoreBoard.bloodySign.inputEnabled = true;
@@ -2495,22 +2589,22 @@ DrinkDrive.Level2.prototype = {
         scoreBoard.updateLevel('Level 2');
         scoreBoard.updateBloodLevel("0", "5");
         
-        distractionLabel = new DrinkDrive.DistractionLabel(this.game);
+        distractionLabel = new CupGame.DistractionLabel(this.game);
         distractionLabel.create();
         distractionLabel.updateLabel("Paying attention?");
         
-        this.smoke = new DrinkDrive.Cloud(this.game);
+        this.smoke = new CupGame.Cloud(this.game);
         this.smoke.create(true);
         this.smoke.sprite.alpha = 1.0;
         this.smoke.fullScreen();
         
-        infoImage = new DrinkDrive.InfoImage(this.game);
+        infoImage = new CupGame.InfoImage(this.game);
         infoImage.create(2);
         infoImage.sprite.alpha = 0;
         infoImage.fadeIn();
         
         /*
-        infoLabel = new DrinkDrive.InfoLabel(this.game);
+        infoLabel = new CupGame.InfoLabel(this.game);
         infoLabel.create();
         
         infoLabel.updateLabel('Level 2');
@@ -2591,7 +2685,7 @@ DrinkDrive.Level2.prototype = {
 		//	Stop music, delete sprites, purge caches, free resources, all that good stuff.
         this.cleanUp();
 		//	Then let's go back to the main menu.
-		this.state.start('CupGameMainMenu');
+		this.state.start('MainMenu');
            
 	},
     
@@ -2625,7 +2719,7 @@ DrinkDrive.Level2.prototype = {
 };
 
 
-DrinkDrive.Level3 = function (game) {
+CupGame.Level3 = function (game) {
 
 	//	When a State is added to Phaser it automatically has the following properties set on it, even if they already exist:
 
@@ -2669,30 +2763,30 @@ DrinkDrive.Level3 = function (game) {
     
 };
 
-DrinkDrive.Level3.prototype = {
+CupGame.Level3.prototype = {
     
 	create: function () {
         
         this.game.stage.backgroundColor = '#FFFFFF';
         this.background = this.game.add.image(0, 0, 'default_bg');
         
-        lights = new DrinkDrive.Lights(this.game);
+        lights = new CupGame.Lights(this.game);
         lights.create();
         
-        wizard = new DrinkDrive.Wizard(this.game);
+        wizard = new CupGame.Wizard(this.game);
         wizard.create();
         
-        cups = new DrinkDrive.Cups(this.game);
+        cups = new CupGame.Cups(this.game);
         cups.create(true);
         cups.updateSwapSpeed(400);
         cups.createBall();
         
         cups.setWizard(wizard);
         
-        exitButton = new DrinkDrive.ExitButton(this.game);
+        exitButton = new CupGame.ExitButton(this.game);
         exitButton.create();
         
-        scoreBoard = new DrinkDrive.ScoreBoard(this.game);
+        scoreBoard = new CupGame.ScoreBoard(this.game);
         scoreBoard.create();
         
         scoreBoard.bloodySign.inputEnabled = true;
@@ -2701,22 +2795,22 @@ DrinkDrive.Level3.prototype = {
         scoreBoard.updateLevel('Level 3');
         scoreBoard.updateBloodLevel("0", "7");
         
-        distractionLabel = new DrinkDrive.DistractionLabel(this.game);
+        distractionLabel = new CupGame.DistractionLabel(this.game);
         distractionLabel.create();
         distractionLabel.updateLabel("Distraction!");
         
-        this.smoke = new DrinkDrive.Cloud(this.game);
+        this.smoke = new CupGame.Cloud(this.game);
         this.smoke.create(true);
         this.smoke.sprite.alpha = 1.0;
         this.smoke.fullScreen();
         
-        infoImage = new DrinkDrive.InfoImage(this.game);
+        infoImage = new CupGame.InfoImage(this.game);
         infoImage.create(3);
         infoImage.sprite.alpha = 0;
         infoImage.fadeIn();
         
         /*
-        infoLabel = new DrinkDrive.InfoLabel(this.game);
+        infoLabel = new CupGame.InfoLabel(this.game);
         infoLabel.create();
         
         infoLabel.updateLabel('Level 3');
@@ -2841,7 +2935,7 @@ DrinkDrive.Level3.prototype = {
 		//	Stop music, delete sprites, purge caches, free resources, all that good stuff.
         this.cleanUp();
 		//	Then let's go back to the main menu.
-		this.state.start('CupGameMainMenu');
+		this.state.start('MainMenu');
            
 	},
     
@@ -2891,7 +2985,7 @@ DrinkDrive.Level3.prototype = {
 };
 
 
-DrinkDrive.Level4 = function (game) {
+CupGame.Level4 = function (game) {
 
 	//	When a State is added to Phaser it automatically has the following properties set on it, even if they already exist:
 
@@ -2931,29 +3025,29 @@ DrinkDrive.Level4 = function (game) {
     this.hasResizedDistaction = false;
 };
 
-DrinkDrive.Level4.prototype = {
+CupGame.Level4.prototype = {
 
 	create: function () {
         
         this.game.stage.backgroundColor = '#FFFFFF';
         this.background = this.game.add.image(0, 0, 'default_bg');
         
-        lights = new DrinkDrive.Lights(this.game);
+        lights = new CupGame.Lights(this.game);
         lights.create();
         
-        wizard = new DrinkDrive.Wizard(this.game);
+        wizard = new CupGame.Wizard(this.game);
         wizard.create();
         
-        cups = new DrinkDrive.Cups(this.game);
+        cups = new CupGame.Cups(this.game);
         cups.create(true);
         cups.updateSwapSpeed(175);
         cups.createBall();
         cups.setWizard(wizard);
         
-        exitButton = new DrinkDrive.ExitButton(this.game);
+        exitButton = new CupGame.ExitButton(this.game);
         exitButton.create();
         
-        scoreBoard = new DrinkDrive.ScoreBoard(this.game);
+        scoreBoard = new CupGame.ScoreBoard(this.game);
         scoreBoard.create();
         
         scoreBoard.bloodySign.inputEnabled = true;
@@ -2962,22 +3056,22 @@ DrinkDrive.Level4.prototype = {
         scoreBoard.updateLevel('Level 4');
         scoreBoard.updateBloodLevel("0", "8");
         
-        distractionLabel = new DrinkDrive.DistractionLabel(this.game);
+        distractionLabel = new CupGame.DistractionLabel(this.game);
         distractionLabel.create();
         distractionLabel.updateLabel("YOU’RE DRUUUUUNNK!");
         
-        this.smoke = new DrinkDrive.Cloud(this.game);
+        this.smoke = new CupGame.Cloud(this.game);
         this.smoke.create(true);
         this.smoke.sprite.alpha = 1.0;
         this.smoke.fullScreen();
         
-        infoImage = new DrinkDrive.InfoImage(this.game);
+        infoImage = new CupGame.InfoImage(this.game);
         infoImage.create(4);
         infoImage.sprite.alpha = 0;
         infoImage.fadeIn();
         
         /*
-        infoLabel = new DrinkDrive.InfoLabel(this.game);
+        infoLabel = new CupGame.InfoLabel(this.game);
         infoLabel.create();
         
         infoLabel.updateLabel('Level 4');
@@ -3101,7 +3195,7 @@ DrinkDrive.Level4.prototype = {
 		//	Stop music, delete sprites, purge caches, free resources, all that good stuff.
         this.cleanUp();
 		//	Then let's go back to the main menu.
-		this.state.start('CupGameMainMenu');
+		this.state.start('MainMenu');
            
 	},
     
@@ -3135,7 +3229,7 @@ DrinkDrive.Level4.prototype = {
 };
 
 
-DrinkDrive.Level5 = function (game) {
+CupGame.Level5 = function (game) {
 
 	//	When a State is added to Phaser it automatically has the following properties set on it, even if they already exist:
 
@@ -3175,33 +3269,33 @@ DrinkDrive.Level5 = function (game) {
     this.hasResizedDistaction = false;
 };
 
-DrinkDrive.Level5.prototype = {
+CupGame.Level5.prototype = {
 
 	create: function () {
         
         this.game.stage.backgroundColor = '#FFFFFF';
         this.background = this.game.add.image(0, 0, 'default_bg');
         
-        lights = new DrinkDrive.Lights(this.game);
+        lights = new CupGame.Lights(this.game);
         lights.create();
         
-        wizard = new DrinkDrive.Wizard(this.game);
+        wizard = new CupGame.Wizard(this.game);
         wizard.create();
         
-        cups = new DrinkDrive.Cups(this.game);
+        cups = new CupGame.Cups(this.game);
         cups.create(true);
         cups.updateSwapSpeed(250);
         cups.createBall();
         cups.setWizard(wizard);
         
         
-        exitButton = new DrinkDrive.ExitButton(this.game);
+        exitButton = new CupGame.ExitButton(this.game);
         exitButton.create();
         
-        scoreBoard = new DrinkDrive.ScoreBoard(this.game);
+        scoreBoard = new CupGame.ScoreBoard(this.game);
         scoreBoard.create();
         /*
-        infoLabel = new DrinkDrive.InfoLabel(this.game);
+        infoLabel = new CupGame.InfoLabel(this.game);
         infoLabel.create();
         
         infoLabel.updateLabel('Level 5');
@@ -3213,16 +3307,16 @@ DrinkDrive.Level5.prototype = {
         scoreBoard.updateLevel('Level 5');
         scoreBoard.updateBloodLevel("1", "0");
         
-        distractionLabel = new DrinkDrive.DistractionLabel(this.game);
+        distractionLabel = new CupGame.DistractionLabel(this.game);
         distractionLabel.create();
         distractionLabel.updateLabel("WRECKED! WRECKED! WRECKED!");
         
-        this.smoke = new DrinkDrive.Cloud(this.game);
+        this.smoke = new CupGame.Cloud(this.game);
         this.smoke.create(true);
         this.smoke.sprite.alpha = 1.0;
         this.smoke.fullScreen();
         
-        infoImage = new DrinkDrive.InfoImage(this.game);
+        infoImage = new CupGame.InfoImage(this.game);
         infoImage.create(5);
         infoImage.sprite.alpha = 0;
         infoImage.fadeIn();
@@ -3344,7 +3438,7 @@ DrinkDrive.Level5.prototype = {
 		//	Stop music, delete sprites, purge caches, free resources, all that good stuff.
         this.cleanUp();
 		//	Then let's go back to the main menu.
-		this.state.start('CupGameMainMenu');
+		this.state.start('MainMenu');
            
 	},
     
@@ -3378,7 +3472,7 @@ DrinkDrive.Level5.prototype = {
 };
 
 
-DrinkDrive.Level6 = function (game) {
+CupGame.Level6 = function (game) {
 
 	//	When a State is added to Phaser it automatically has the following properties set on it, even if they already exist:
 
@@ -3420,30 +3514,30 @@ DrinkDrive.Level6 = function (game) {
     this.levelDisplay = 6;
 };
 
-DrinkDrive.Level6.prototype = {
+CupGame.Level6.prototype = {
 
 	create: function () {
         
         this.game.stage.backgroundColor = '#FFFFFF';
         this.background = this.game.add.image(0, 0, 'default_bg');
         
-        lights = new DrinkDrive.Lights(this.game);
+        lights = new CupGame.Lights(this.game);
         lights.create();
         
-        wizard = new DrinkDrive.Wizard(this.game);
+        wizard = new CupGame.Wizard(this.game);
         wizard.create();
         
-        cups = new DrinkDrive.Cups(this.game);
+        cups = new CupGame.Cups(this.game);
         cups.create(true);
         
         cups.updateSwapSpeed(200 - (this.levelDisplay * 2));
         cups.createBall();
         cups.setWizard(wizard);
         
-        exitButton = new DrinkDrive.ExitButton(this.game);
+        exitButton = new CupGame.ExitButton(this.game);
         exitButton.create();
         
-        scoreBoard = new DrinkDrive.ScoreBoard(this.game);
+        scoreBoard = new CupGame.ScoreBoard(this.game);
         scoreBoard.create();
         
         scoreBoard.updateLevel('Level ' + this.levelDisplay);
@@ -3472,16 +3566,16 @@ DrinkDrive.Level6.prototype = {
         }
 
         
-        distractionLabel = new DrinkDrive.DistractionLabel(this.game);
+        distractionLabel = new CupGame.DistractionLabel(this.game);
         distractionLabel.create();
         distractionLabel.updateLabel("YOU’RE A DISGRACE!");
         
-        this.smoke = new DrinkDrive.Cloud(this.game);
+        this.smoke = new CupGame.Cloud(this.game);
         this.smoke.create(true);
         this.smoke.sprite.alpha = 1.0;
         this.smoke.fullScreen();
         
-        infoImage = new DrinkDrive.InfoImage(this.game);
+        infoImage = new CupGame.InfoImage(this.game);
         
         infoImage.create(this.levelDisplay);
         
@@ -3645,7 +3739,7 @@ DrinkDrive.Level6.prototype = {
 		//	Stop music, delete sprites, purge caches, free resources, all that good stuff.
         this.cleanUp();
 		//	Then let's go back to the main menu.
-		this.state.start('CupGameMainMenu');
+		this.state.start('MainMenu');
            
 	},
     
@@ -3680,7 +3774,7 @@ DrinkDrive.Level6.prototype = {
 };
 
 
-DrinkDrive.Share = function (game) {
+CupGame.Share = function (game) {
 
 	this.playButton = null;
     this.message_text = null;
@@ -3693,7 +3787,7 @@ DrinkDrive.Share = function (game) {
     this.currentLevel = 0;
 };
 
-DrinkDrive.Share.prototype = {
+CupGame.Share.prototype = {
 
 	create: function () {
         
@@ -3709,15 +3803,15 @@ DrinkDrive.Share.prototype = {
         this.cloud.anchor.set(0.5);
         
         //Text
-        var style = DrinkDrive.Style.defaultText("45px", this.game.width*0.7, "#46a8ef");
+        var style = CupGame.Style.defaultText("45px", this.game.width*0.7, "#46a8ef");
         
         load_text = this.game.add.text((this.game.width*0.5), (this.game.height*0.20), 'You reached level '+this.currentLevel+', Cup Wizard claims another drunk victim!', style);
         load_text.anchor.set(0.5);
         
-        desk = new DrinkDrive.Desk(this.game);
+        desk = new CupGame.Desk(this.game);
         desk.create();
         
-        cups = new DrinkDrive.Cups(this.game);
+        cups = new CupGame.Cups(this.game);
         cups.create();
         
         cups.createBall();
@@ -3732,10 +3826,10 @@ DrinkDrive.Share.prototype = {
         shareButton.inputEnabled = true;
         shareButton.events.onInputDown.add(this.share_button_tapped, this);
         
-        exitButton = new DrinkDrive.ExitButton(this.game);
+        exitButton = new CupGame.ExitButton(this.game);
         exitButton.create();
         
-        this.smoke = new DrinkDrive.Cloud(this.game);
+        this.smoke = new CupGame.Cloud(this.game);
         this.smoke.create(true);
         this.smoke.sprite.alpha = 1.0;
         this.smoke.shrinkCloud();
@@ -3769,58 +3863,18 @@ DrinkDrive.Share.prototype = {
     
     share_button_tapped: function()
     {
-       // alert("Share Button Action - Your score is:" + this.currentLevel);
-       this.startShare();
+        alert("Share Button Action - we don't have a score?");
     },
     
     play_button_tapped: function()
     {
         this.cleanUp();
-        this.state.start('CupGameSecondMenu');
+        this.state.start('SecondMenu');
     },
-
     setLevel: function(level){
         this.currentLevel = level;
-    },
-
-
-    startShare: function() {
-
-            sharebox = this.add.sprite(75,200,'sharebox');
-            facebookShareButton = this.add.button(174,375, 'facebook-share', this.facebookShare, this);
-            twitterShareButton = this.add.button(174,467, 'twitter-share', this.twitterShare, this);
-            emailShareButton = this.add.button(174,565, 'email-share', this.emailShare, this);      
-            closeShareButton = this.add.button(500,185, 'close-share', this.closeShare, this);
-    },
-
-    closeShare: function () {
-            sharebox.kill();
-            facebookShareButton.kill();
-            twitterShareButton.kill();
-            emailShareButton.kill();
-            closeShareButton.kill();
-    },
-
-    facebookShare: function() {
-        FB.ui(
-        {
-        method: 'share',
-        href: 'http://perth.303lowe.agency/ORS/test/'
-        }, function(response){});
-    },
-
-    twitterShare: function() {
-        var url = "https://twitter.com/intent/tweet?text=Alcohol awareness game. I got to level "+ this.currentLevel + "! See how you score. Play the game.";
-        twitterWindow = window.open(url, "", "width=700, height=500");
-        twitterWindow.focus();
-    },
-
-    emailShare: function() {
-        var yourMessage = "Alcohol awareness game. I got to level "+ this.currentLevel + "! See how you score. Play the game.";
-        var subject = "Check out this game. I got "+ this.currentLevel;
-        document.location.href = "mailto:?subject="
-        + encodeURIComponent(subject)
-        + "&body=" + encodeURIComponent(yourMessage);
     }
 
 };
+
+
