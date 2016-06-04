@@ -73,8 +73,8 @@ CupGame.Preloader.prototype = {
         //this.game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 	    this.game.load.atlasJSONHash('cup_game', 'assets/cup_game.png', 'assets/cup_game.json');     
         
-        this.game.load.script('filterX', 'src/filters/BlurX.js');
-        this.game.load.script('filterY', 'src/filters/BlurY.js');
+        this.game.load.script('filterX', 'src/Filters/BlurX.js');
+        this.game.load.script('filterY', 'src/Filters/BlurY.js');
         
         this.game.load.image('level1', 'assets/text/level1.png');
         this.game.load.image('level2', 'assets/text/level2.png');
